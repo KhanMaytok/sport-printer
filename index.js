@@ -34,7 +34,44 @@ app.post('/', (req, res) => {
     }
 
     try {
-      printer.println("Hola amiguitos");
+      printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
+        printer.println("Prueba de impresión");
       let execute = printer.execute()
       console.error("Print done!");
     } catch (error) {
