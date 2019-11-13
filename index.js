@@ -34,48 +34,41 @@ app.post('/', (req, res) => {
     }
 
     try {
-      printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-        printer.println("Prueba de impresión");
-      let execute = printer.execute()
+      printer.alignCenter();
+      printer.println("ARTICULOS DEPORTIVOS");
+      printer.println("SPORT XXI SAC");
+      printer.println("Alfredo Lapoint 1155");
+      printer.println("Alfredo lapoint 393");
+      printer.println("Telf: (074)-236374 / (074)-228656");
+      printer.println("Chiclayo-Chiclayo-Lambayeque");
+      printer.println("RUC: 20479467863");
+
+      printer.drawLine();
+      printer.println("BOLETA ELECTRÓNICA");
+      printer.drawLine();
+      printer.println("02/02/2019 - B001-59896");
+
+      printer.alignLeft();
+      printer.println("CLIENTE");
+      printer.println("DNI/RUC");
+      printer.println("DIRECCION");
+
+      printer.println("CONTADO");
+      printer.drawLine();
+      printer.drawLine();
+
+      printer.println("Representación gráfica de la boleta electrónica podrá ser consultada en www.sportxxi.com.pe");
+      printer.alignCenter();
+      printer.println("Gracias por su preferencia");
+      printer.cut();           
+      console.log('Imprimiendo')
+      printer.execute()
+      printer.clear();
+      res.json({ a: 1 });
       console.error("Print done!");
     } catch (error) {
       console.log("Print failed:", error);
+      res.json({ a: 1 });
     }
 
 })
