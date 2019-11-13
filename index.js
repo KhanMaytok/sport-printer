@@ -8,6 +8,9 @@ const fs = require('fs')
 const ThermalPrinter = require("node-thermal-printer").printer;
 const PrinterTypes = require("node-thermal-printer").types;
 
+const VARIOS = 'VARIOS';
+const ZERO = '0';
+
 app.use(bodyParser.urlencoded({
     extended: true
 }))
@@ -46,15 +49,21 @@ app.post('/', (req, res) => {
       printer.drawLine();
       printer.println("BOLETA ELECTRÓNICA");
       printer.drawLine();
-      printer.println("02/02/2019 - B001-59896");
+      printer.println(`${body.header.created_at}    -    ${body.header.serie}-${body.header.number}`);
 
       printer.alignLeft();
-      printer.println("CLIENTE");
-      printer.println("DNI/RUC");
-      printer.println("DIRECCION");
+      printer.println(`CLIENTE:   ${body.header.customer.first_name || VARIOS}`);
+      printer.println(`DNI/RUC:   ${body.header.customer.document_id || ZERO}`);
+      printer.println(`DIRECCION: ${body.header.customer.address || ZERO}`);
 
-      printer.println("CONTADO");
+      printer.println(body.header.payment_condition);
       printer.drawLine();
+      printer.table(["Desc", "Cant", "P.Unit", "Importe"]);
+      body.details.map(function(el){
+        printer.table([el.product, el.quantity, el.unit_price, el.total]);
+      })
+      
+
       printer.drawLine();
 
       printer.println("Representación gráfica de la boleta electrónica podrá ser consultada en www.sportxxi.com.pe");
