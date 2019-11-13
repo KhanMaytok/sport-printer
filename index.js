@@ -64,7 +64,15 @@ app.post('/', (req, res) => {
       })
       
 
+      let total = parseFloat(body.header.total);
+      let subtotal = parseFloat(body.header.total/1.18);
+      let igv = total - subtotal;
+
       printer.drawLine();
+      printer.println(`INAFECTO: 0.00`);
+      printer.println(`AFECTO:   ${subtotal.toFixed(2)}`);
+      printer.println(`IGV:      ${igv.toFixed(2)}`);
+      printer.println(`TOTAL:    ${total.toFixed(2)}`);
 
       printer.println("Representación gráfica de la boleta electrónica podrá ser consultada en www.sportxxi.com.pe");
       printer.alignCenter();
