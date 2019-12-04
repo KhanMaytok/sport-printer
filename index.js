@@ -48,7 +48,8 @@ app.post('/', (req, res) => {
       printer.println("RUC: 20479467863");
 
       printer.drawLine();
-      printer.println("BOLETA ELECTRÓNICA");
+      let invoicetype = body.serie.startsWith('F') ? 'FACTURA' : 'BOLETA';
+      printer.println(`${invoicetype} ELECTRÓNICA`);
       printer.drawLine();
       printer.println(`${body.header.created_at}    -    ${body.header.serie}-${body.header.number}`);
       printer.drawLine();
