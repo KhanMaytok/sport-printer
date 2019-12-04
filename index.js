@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 const fs = require('fs')
+const numeroALetras = require('./NumeroALetra')
 
 const ThermalPrinter = require("node-thermal-printer").printer;
 const PrinterTypes = require("node-thermal-printer").types;
@@ -50,6 +51,7 @@ app.post('/', (req, res) => {
       printer.println("BOLETA ELECTRÓNICA");
       printer.drawLine();
       printer.println(`${body.header.created_at}    -    ${body.header.serie}-${body.header.number}`);
+      printer.drawLine();
 
       printer.alignLeft();
       printer.println(`CLIENTE:   ${body.header.customer.first_name || VARIOS}`);
@@ -61,8 +63,7 @@ app.post('/', (req, res) => {
       printer.table(["Desc", "Cant", "P.Unit", "Importe"]);
       body.details.map(function(el){
         printer.table([el.product, el.quantity, el.unit_price, el.total]);
-      })
-      
+      })      
 
       let total = parseFloat(body.header.total);
       let subtotal = parseFloat(body.header.total/1.18);
@@ -73,6 +74,18 @@ app.post('/', (req, res) => {
       printer.println(`AFECTO:   ${subtotal.toFixed(2)}`);
       printer.println(`IGV:      ${igv.toFixed(2)}`);
       printer.println(`TOTAL:    ${total.toFixed(2)}`);
+      printer.drawLine();
+
+      let letras = numeroALetras(parseFloat(total), {
+        plural: 'dólares estadounidenses',
+        singular: 'dólar estadounidense',
+        centPlural: 'centavos',
+        centSingular: 'centavo'
+      });
+
+      printer.println(`Son:      ${letras}`);
+      printer.println(` `);
+      printer.println(`ITEMS:    ${body.details.length} `);
 
       printer.println("Representación gráfica de la boleta electrónica podrá ser consultada en www.sportxxi.com.pe");
       printer.alignCenter();
