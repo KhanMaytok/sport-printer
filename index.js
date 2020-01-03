@@ -55,7 +55,7 @@ app.post('/', (req, res) => {
       printer.drawLine();
 
       printer.alignLeft();
-      printer.println(`CLIENTE:   ${body.header.customer.first_name || VARIOS}`);
+      printer.println(`CLIENTE:   ${body.header.get_customer_name}`);
       printer.println(`DNI/RUC:   ${body.header.customer.document_id || ZERO}`);
       printer.println(`DIRECCION: ${body.header.customer.address || ZERO}`);
 
